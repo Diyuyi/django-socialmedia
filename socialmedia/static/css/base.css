@@ -1,0 +1,21 @@
+@import "reset.css";
+
+:root {
+    --primary-1: #0866ff;
+
+    --light: #ffffff;
+    --gray-light: #f0f2f5;
+    --color-light-1: #292929;
+    --color-light-2: #474748;
+    --color-light-3: #898a8d;
+    
+    --dark: #18191a;
+    --gray-dark: #242526;
+    --color-dark-1: #e3e5ea;
+    --color-dark-2: #e4e6eb;
+    --color-dark-3: #9b9ea3;
+}
+
+.hehe {
+    color: var(--primary-1);
+}
