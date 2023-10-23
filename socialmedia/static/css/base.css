@@ -8,14 +8,24 @@
     --color-light-1: #292929;
     --color-light-2: #474748;
     --color-light-3: #898a8d;
+    --bg-light-1: #e4e6eb;
     
     --dark: #18191a;
     --gray-dark: #242526;
     --color-dark-1: #e3e5ea;
     --color-dark-2: #e4e6eb;
     --color-dark-3: #9b9ea3;
+    --bg-dark-1: #3a3b3c;
+
+    --shadow-1: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.hehe {
-    color: var(--primary-1);
+html {
+    box-sizing: border-box;
+
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-light-1);
 }
