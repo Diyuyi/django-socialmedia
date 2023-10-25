@@ -4,6 +4,14 @@ header {
     color: var(--color-light-1);
 }
 
+.left-nav, .right-nav {
+    width: 25%;
+}
+
+.middle-nav, .right-nav {
+    color: var(--color-light-1);
+}
+
 .left-nav .logo {
     color: var(--primary-1);
     font-size: 2.5rem;
@@ -13,8 +21,8 @@ header {
     border-radius: 2rem !important;
 }
 
-.middle-nav, .right-nav {
-    color: var(--color-light-1);
+.middle-nav {
+    width: 50%;
 }
 
 .middle-nav > a {
@@ -33,4 +41,51 @@ header {
     height: 40px;
     border-radius: 50%;
     background: var(--bg-light-1);
+}
+
+/* Content */
+.content-area {
+    background: var(--gray-light);
+}
+
+.left-content, .right-content {
+    width: 25%;
+}
+
+.main-content {
+    width: 50%;
+}
+
+.card .card-img-top {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important; 
+}
+
+.card .card-top {
+    padding: 1rem;
+}
+
+.card .card-top input {
+    width: calc(100% - 50px);
+    border-radius: 2rem;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.card .card-top input::placeholder {
+    color: var(--color-light-3);
+}
+
+.card .card-body .action {
+    font-size: 1.1rem;
+}
+
+.card .card-body .action a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.card .card-body .action span {
+    margin-left: .25rem;
 }

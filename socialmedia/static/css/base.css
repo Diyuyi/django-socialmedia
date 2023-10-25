@@ -29,3 +29,15 @@ a {
     text-decoration: none;
     color: var(--color-light-1);
 }
+
+a:hover {
+    color: var(--color-light-1);
+    cursor: pointer;
+}
+
+input {
+    border: none !important;
+    outline: none !important;
+    padding: .6rem 1rem;
+    background: var(--bg-light-1);
+}

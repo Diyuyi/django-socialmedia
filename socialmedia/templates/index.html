@@ -1,4 +1,58 @@
 {% extends 'header.html' %}
 
 {% block content %}
+<div class="content-area d-flex justify-content-between align-items-center px-4 py-2">
+    <div class="left-content">
+        left-content
+    </div>
+    <div class="main-content d-flex justify-content-center">
+        <div class="card" style="width: 80%">
+            <div class="card-top d-flex align-items-center justify-content-between">
+                <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
+                <input type="text" placeholder="What do you think?">
+            </div>
+            <div class="card-body">
+                <div class="action d-flex align-items-center justify-content-between">
+                    <a class="livestream">
+                        <i class="fa-solid fa-video text-danger"></i>
+                        <span>Video trực tiếp</span>
+                    </a>
+                    <a class="upload">
+                        <i class="fa-solid fa-images text-success"></i>
+                        <span>Ảnh / video</span>
+                    </a>
+                    <a class="react">
+                        <i class="fa-solid fa-face-smile text-warning"></i>
+                        <span>Cảm xúc / hoạt động</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-content">
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+</div>
 {% endblock %}
