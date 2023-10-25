@@ -19,6 +19,7 @@ header {
 
 .left-nav .input-search {
     border-radius: 2rem !important;
+    background: var(--bg-light-1);
 }
 
 .middle-nav {
@@ -56,6 +57,10 @@ header {
     width: 50%;
 }
 
+.main-content .card {
+    margin: 1rem auto;
+}
+
 .card .card-img-top {
     width: 40px !important;
     height: 40px !important;
@@ -88,4 +93,36 @@ header {
 
 .card .card-body .action span {
     margin-left: .25rem;
+}
+
+.card .count, .card .action {
+    margin: 0 2rem;
+}
+
+/* Post detail */
+.post-detail .author .name {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.post-detail .author .upload-time {
+    font-size: .9rem;
+}
+
+.post-detail .card-body {
+    padding: .5rem 1rem;
+}
+
+.post-detail .card-body .file-upload {
+    margin: 0 -1rem;
+}
+
+.post-detail .count {
+    padding: .5rem 0;
+}
+
+.post-detail .action .action-item {
+    width: 30%;
+    text-align: center;
+    padding: 1rem 0;
 }

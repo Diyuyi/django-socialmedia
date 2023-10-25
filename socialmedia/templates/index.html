@@ -1,12 +1,13 @@
 {% extends 'header.html' %}
+{% load static %}
 
 {% block content %}
 <div class="content-area d-flex justify-content-between align-items-center px-4 py-2">
     <div class="left-content">
         left-content
     </div>
-    <div class="main-content d-flex justify-content-center">
-        <div class="card" style="width: 80%">
+    <div class="main-content">
+        <div class="card upload-post" style="width: 80%">
             <div class="card-top d-flex align-items-center justify-content-between">
                 <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
                 <input type="text" placeholder="What do you think?">
@@ -28,31 +29,131 @@
                 </div>
             </div>
         </div>
+        <div class="card post-detail" style="width: 80%">
+            <div class="card-top d-flex align-items-center">
+                <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
+                <div class="author ms-2">
+                    <div class="name">Lương Tiến Thịnh</div>
+                    <div class="upload-time">1 giờ</div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="post-body mb-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, blanditiis inventore, provident nihil aut sunt nemo beatae unde voluptates qui officiis, veritatis distinctio pariatur ratione. Excepturi sequi iste quae facilis?
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, maxime expedita? Tempore, eos commodi eligendi at ab tenetur. Dolorem quis cupiditate architecto, labore ea maxime doloremque? Provident debitis possimus corrupti.
+                </div>
+                <div class="file-upload">
+                    <img style="width: 100%;" src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t45.1600-4/382435571_6479424322482_220636444178786056_n.jpg?stp=cp0_dst-jpg_p526x296_q75_spS444&_nc_cat=109&ccb=1-7&_nc_sid=9aa348&_nc_eui2=AeEiEg_Za19pxExJHFLbfYXBgm_kmvxXDvuCb-Sa_FcO-zSv5GjSNnZQQ2qM6RzrKhr18cxN_xJjVuzZL3pHv33c&_nc_ohc=FuG68Qb8ASgAX-d4rAZ&_nc_oc=AQk2r6qhoWkr_NTBt1m6-fX189DrRqveWS_m_RJxl1dCPcEcW187CefN57q6RDzEMO0&_nc_ht=scontent.fsgn5-8.fna&_nc_e2o=s&oh=00_AfA3UGFZNkjkU8wxMgyde-Ag3jbadDNq6GU5860KowiLOA&oe=653DB6F3" alt="">
+                </div>
+            </div>
+            <div class="count d-flex justify-content-between align-items-center">
+                <div class="react">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span>1.2k</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="comment">
+                        <span>15</span>
+                        <i class="fa-solid fa-message"></i>
+                    </div>
+                    <div class="share ms-3">
+                        <span>8</span>
+                        <i class="fa-solid fa-share"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="action d-flex justify-content-between align-items-center border-top">
+                <a href="{% url 'home' %}" class="action-item react">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span>Like</span>
+                </a>
+                <a href="{% url 'home' %}" class="action-item comment">
+                    <i class="fa-solid fa-message"></i>
+                    <span>Comment</span>
+                </a>
+                <a href="{% url 'home' %}" class="action-item share">
+                    <i class="fa-solid fa-share"></i>
+                    <span>Share</span>
+                </a>
+            </div>
+        </div>
+        <div class="card post-detail" style="width: 80%">
+            <div class="card-top d-flex align-items-center">
+                <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
+                <div class="author ms-2">
+                    <div class="name">Lương Tiến Thịnh</div>
+                    <div class="upload-time">1 giờ</div>
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div class="post-body mb-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, blanditiis inventore, provident nihil aut sunt nemo beatae unde voluptates qui officiis, veritatis distinctio pariatur ratione. Excepturi sequi iste quae facilis?
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, maxime expedita? Tempore, eos commodi eligendi at ab tenetur. Dolorem quis cupiditate architecto, labore ea maxime doloremque? Provident debitis possimus corrupti.
+                </div>
+                <div class="file-upload">
+                    <video style="width: 100%;" controls>
+                        <source src="{% static 'video/vd1.mp4' %}" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="count d-flex justify-content-between align-items-center">
+                <div class="react">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span>1.2k</span>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="comment">
+                        <span>15</span>
+                        <i class="fa-solid fa-message"></i>
+                    </div>
+                    <div class="share ms-3">
+                        <span>8</span>
+                        <i class="fa-solid fa-share"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="action d-flex justify-content-between align-items-center border-top">
+                <a href="{% url 'home' %}" class="action-item react">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span>Like</span>
+                </a>
+                <a href="{% url 'home' %}" class="action-item comment">
+                    <i class="fa-solid fa-message"></i>
+                    <span>Comment</span>
+                </a>
+                <a href="{% url 'home' %}" class="action-item share">
+                    <i class="fa-solid fa-share"></i>
+                    <span>Share</span>
+                </a>
+            </div>
+        </div>
     </div>
     <div class="right-content">
         <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
     </div>
 </div>
 {% endblock %}

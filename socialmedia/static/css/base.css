@@ -1,4 +1,5 @@
 @import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
 
 :root {
     --primary-1: #0866ff;
@@ -23,6 +24,12 @@
 html {
     box-sizing: border-box;
 
+}
+
+body {
+    font-family: 'Playpen Sans', cursive;
+    line-height: 1.2;
+    text-rendering: optimizeSpeed;
 }
 
 a {
