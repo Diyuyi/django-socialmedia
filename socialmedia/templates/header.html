@@ -4,27 +4,33 @@
 <header>
     <div class="header-area d-flex justify-content-between align-items-center px-4">
         <div class="left-nav d-flex justify-content-start align-items-center">
-            <a href="{% url 'home' %}" class="logo">
+            <a href="#" class="logo">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <nav class="navbar bg-body-tertiary">
+            <nav class="navbar bg-body-tertiary" style="width: calc(100% - 80px)">
                 <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2 input-search" type="search" placeholder="Search on facebook" aria-label="Search">
+                    <form class="d-flex w-100" role="search">
+                        <input class="form-control me-2 input-search" type="search" placeholder="Tìm kiếm trên facebook" aria-label="Search">
                     </form>
                 </div>
             </nav>
         </div>
         <div class="middle-nav d-flex justify-content-center align-items-center">
-            <a href="{% url 'home' %}" class="home"><i class="fa-solid fa-house"></i></a>
-            <a href="{% url 'home' %}" class="friend"><i class="fa-solid fa-user-group"></i></a>
-            <a href="{% url 'home' %}" class="group"><i class="fa-solid fa-people-group"></i></a>
+            <a href="{% url 'home' page='home' %}" class="navigate home {% if page == 'home' %}active{% endif %}">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="{% url 'home' page='friend' %}" class="navigate friend {% if page == 'friend' %}active{% endif %}">
+                <i class="fa-solid fa-user-group"></i>
+            </a>
+            <a href="{% url 'home' page='group' %}" class="navigate group {% if page == 'group' %}active{% endif %}">
+                <i class="fa-solid fa-people-group"></i>
+            </a>
         </div>
         <div class="right-nav d-flex justify-content-end align-items-center">
-            <a href="{% url 'home' %}" class="menu"><i class="fa-solid fa-bars"></i></a>
-            <a href="{% url 'home' %}" class="message"><i class="fa-solid fa-comment-dots"></i></a>
-            <a href="{% url 'home' %}" class="notify"><i class="fa-solid fa-bell"></i></a>
-            <a href="{% url 'home' %}" class="account"><i class="fa-solid fa-user"></i></a>
+            <a href="#" class="menu"><i class="fa-solid fa-bars"></i></a>
+            <a href="#" class="message"><i class="fa-solid fa-comment-dots"></i></a>
+            <a href="#" class="notify"><i class="fa-solid fa-bell"></i></a>
+            <a href="#" class="account"><i class="fa-solid fa-user"></i></a>
         </div>
     </div>
 </header>
