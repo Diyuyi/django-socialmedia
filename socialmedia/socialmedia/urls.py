@@ -22,6 +22,5 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('profiles/', include('profiles.urls')),
     path('social/', include('social.urls')),
-    path('posts/', include('posts.urls')),
-    path('',post_views.index,name="home")
+    path('', include('posts.urls')),
 ]

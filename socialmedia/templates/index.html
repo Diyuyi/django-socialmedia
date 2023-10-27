@@ -1,4 +1,4 @@
-{% extends 'header.html' %}
+{% extends 'base_generic.html' %}
 {% load static %}
 
 {% block content %}
@@ -10,14 +10,115 @@
 
 <div class="content-area d-flex justify-content-between align-items-center px-4 py-2">
     <div class="left-content">
-        left-content
+        <ul class="func">
+            <li>
+                <a href="" class="user">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
+                    <span>Lương Tiến Thịnh</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="func-item">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Bạn bè</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="func-item">
+                    <i class="fa-solid fa-people-group"></i>
+                    <span>Nhóm</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="shortcuts">
+            <div class="title">Lối tắt của bạn</div>
+            <ul>
+                <li>
+                    <a href="" class="shortcut-item">
+                        <img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-1/309001372_480410104123834_487738197727010924_n.png?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=uotzRB1zA0wAX8norcz&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfDEH273T-ZGBUFf8etlXJiPykKdpfOtEG9JmonfBzVeAw&oe=653E92C9" class="card-img" alt="avatar">
+                        <span>Nhóm lập trình django</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="shortcut-item">
+                        <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t39.30808-6/372631787_820615329434925_3104301065940049129_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=cXuftT3mxiIAX_1lrSv&_nc_ht=scontent.fsgn5-15.fna&oh=00_AfCQLb23Q0SI9d2nu0aBYh7aZJwk_hZWzeEV_XPaB_3FaQ&oe=653FA8E4" class="card-img" alt="avatar">
+                        <span>League of Legends</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="shortcut-item">
+                        <img src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-1/332765353_1251045782165736_662750591303582040_n.jpg?stp=dst-jpg_p320x320&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=LVI5On4bzgkAX-i67k8&_nc_ht=scontent.fsgn5-11.fna&oh=00_AfBCehtwA7YCfBz9c3jMXoMA_2RgAk5-Ygdm6n1I1Nf02Q&oe=653F8E80" class="card-img" alt="avatar">
+                        <span>Garena Esport FO4 VN</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="shortcut-item">
+                        <img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/301962485_751587722861858_878365837081963762_n.png?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_ohc=QSqUD6gHMHcAX91Sruq&_nc_ht=scontent.fsgn5-5.fna&oh=00_AfAx3-DNnpCfQnsD5jZlfI7n25Xj4y1geoZn8_O5ByYn2Q&oe=65403036" class="card-img" alt="avatar">
+                        <span>Khoa Công nghệ thông tin - CĐ Công nghệ Thủ Đức</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="main-content">
-        <div class="card upload-post" style="width: 80%">
+        <div class="card upload-post mt-0">
             <div class="card-top d-flex align-items-center justify-content-between">
                 <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
-                <input type="text" placeholder="What do you think?">
+                <a href="{% url 'upload_post' %}" class="text" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalUploadPost">
+                    <input type="text" placeholder="Bạn đang nghĩ gì?">
+                </a>
+                {% block modal-upload-post %}
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div></div>
+                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Tạo bài viết</h1>
+                                <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{% url 'upload_post' %}" method="post">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <div href="" class="user">
+                                        <a href="" class="d-flex align-items-center justify-content-center">
+                                            <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
+                                        </a>
+                                        <div class="author">
+                                            <div>Lương Tiến Thịnh</div>
+                                            <div class="dropdown status">
+                                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdown-upload-post">
+                                                    Trạng thái
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Công khai</a></li>
+                                                    <li><a class="dropdown-item">Chỉ mình tôi</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-body mt-4">
+                                        <div class="custom-scrollbar w-100">
+                                            <h3 class="post-title m-auto"><input type="text" name="title" placeholder="Nhập title"></h3>
+                                            <textarea id="textarea-post" cols="30" rows="10" name="content" placeholder="Tiến Thịnh ơi, bạn đang nghĩ gì?"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                    <button type="button" class="btn-add-file">
+                                        <i class="fa-solid fa-images"></i>
+                                        <span>Đính kèm</span>
+                                    </button>
+                                    <button type="submit" class="btn btn-primary btn-upload">Đăng bài</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
             </div>
+            <hr class="my-0 mx-3">
             <div class="card-body">
                 <div class="action d-flex align-items-center justify-content-between">
                     <a class="livestream">
@@ -35,14 +136,13 @@
                 </div>
             </div>
         </div>
-        <div class="card post-detail" style="width: 80%">
+        <div class="card post-detail">
             <div class="card-top d-flex align-items-center">
                 <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
                 <div class="author ms-2">
-                    <div class="name">Lương Tiến Thịnh</div>
+                    <a href="#" class="name">Lương Tiến Thịnh</a>
                     <div class="upload-time">1 giờ</div>
                 </div>
-
             </div>
             <div class="card-body">
                 <div class="post-body mb-3">
@@ -70,25 +170,25 @@
                 </div>
             </div>
             <div class="action d-flex justify-content-between align-items-center border-top">
-                <a href="{% url 'home' %}" class="action-item react">
+                <a href="#" class="action-item react">
                     <i class="fa-solid fa-thumbs-up"></i>
                     <span>Like</span>
                 </a>
-                <a href="{% url 'home' %}" class="action-item comment">
+                <a href="#" class="action-item comment">
                     <i class="fa-solid fa-message"></i>
                     <span>Comment</span>
                 </a>
-                <a href="{% url 'home' %}" class="action-item share">
+                <a href="#" class="action-item share">
                     <i class="fa-solid fa-share"></i>
                     <span>Share</span>
                 </a>
             </div>
         </div>
-        <div class="card post-detail" style="width: 80%">
+        <div class="card post-detail">
             <div class="card-top d-flex align-items-center">
                 <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img-top" alt="avatar">
                 <div class="author ms-2">
-                    <div class="name">Lương Tiến Thịnh</div>
+                    <a href="#" class="name">Lương Tiến Thịnh</a>
                     <div class="upload-time">1 giờ</div>
                 </div>
 
@@ -121,15 +221,15 @@
                 </div>
             </div>
             <div class="action d-flex justify-content-between align-items-center border-top">
-                <a href="{% url 'home' %}" class="action-item react">
+                <a href="#" class="action-item react">
                     <i class="fa-solid fa-thumbs-up"></i>
                     <span>Like</span>
                 </a>
-                <a href="{% url 'home' %}" class="action-item comment">
+                <a href="#" class="action-item comment">
                     <i class="fa-solid fa-message"></i>
                     <span>Comment</span>
                 </a>
-                <a href="{% url 'home' %}" class="action-item share">
+                <a href="#" class="action-item share">
                     <i class="fa-solid fa-share"></i>
                     <span>Share</span>
                 </a>
@@ -137,28 +237,51 @@
         </div>
     </div>
     <div class="right-content">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-        </button>
-        
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="invite-friend">
+            <div class="title">Lời mời kết bạn</div>
+            <div class="item rounded">
+                <div class="represent mb-2">
+                    <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=VTT51jsf8n4AX8b7IUm&_nc_ht=scontent.fsgn5-15.fna&oh=00_AfDair0x-_SGJPKMWp9M3TmeRBK_c0fNf4D4q7rMl2aZTA&oe=6561D2B8" class="card-img" alt="avatar">
+                    <div class="detail">
+                        <div class="d-flex justify-content-between">
+                            <div class="name">Đức Thắng</div>
+                            <div class="time">2 ngày</div>
+                        </div>
+                        <div class="mutual d-flex align-items-center mt-2">
+                            <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img" alt="avatar">
+                            <span class="ms-2">1 bạn chung</span>
+                        </div>
                     </div>
                 </div>
+                <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Xóa</button>
+                </div>
             </div>
+        </div>
+        <hr>
+        <div class="contact">
+            <div class="title">Người liên hệ</div>
+            <ul class="list-user">
+                <li>
+                    <a href="" class="user-item">
+                        <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=VTT51jsf8n4AX8b7IUm&_nc_ht=scontent.fsgn5-15.fna&oh=00_AfDair0x-_SGJPKMWp9M3TmeRBK_c0fNf4D4q7rMl2aZTA&oe=6561D2B8" class="card-img" alt="avatar">
+                        <span>Đức Thắng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="user-item">
+                        <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GYuol9PnyjoAX8YK3-A&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfBe76IPMFmHmg7Khh1vaENJRcWwloK_6E8vkw1xCLtIWQ&oe=653DBB06" class="card-img" alt="avatar">
+                        <span>Lương Tiến Thịnh</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" class="user-item">
+                        <img src="https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=VTT51jsf8n4AX8b7IUm&_nc_ht=scontent.fsgn5-15.fna&oh=00_AfDair0x-_SGJPKMWp9M3TmeRBK_c0fNf4D4q7rMl2aZTA&oe=6561D2B8" class="card-img" alt="avatar">
+                        <span>Gia Duy</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
