@@ -8,6 +8,9 @@ class Post(models.Model):
     video = models.FileField(upload_to='posts/videos/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
+    
+    def __str__(self) :
+        return f'{self.title} | {self.user}'
 
 class Comment(models.Model):
     content = models.TextField()
