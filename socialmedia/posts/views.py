@@ -12,9 +12,11 @@ def index(request, page):
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
+    template_name = 'upload_post.html'
 
     def form_valid(self, form):
+        print(f"đây là form valid")
         return super().form_valid(form)
     
     def get_success_url(self):
-        return reverse_lazy('upload_post.html')
+        return reverse_lazy('upload_post')

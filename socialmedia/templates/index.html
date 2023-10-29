@@ -68,7 +68,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div></div>
-                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Tạo bài viết</h1>
+                                <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Tạo bài viết {{user.username}}</h1>
                                 <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form action="{% url 'upload_post' %}" method="post">
