@@ -18,4 +18,9 @@ class User(AbstractUser):
         help_text='Specific permissions for this user.',
         related_name="custom_user_set",
         related_query_name="user",
-    )
+    )    
+
+
+
+
+
