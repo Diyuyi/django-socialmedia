@@ -13,8 +13,7 @@
     --bg-light-1: #e4e6eb;
     --bg-light-2: #e4e6e9;
     --bg-light-3: #d8dadf;
-    
-    
+
     --dark: #18191a;
     --gray-dark: #242526;
     --color-dark-1: #e3e5ea;
@@ -22,9 +21,15 @@
     --color-dark-3: #9b9ea3;
     --bg-dark-1: #3a3b3c;
 
-    --shadow-1: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    --bg-green: #42b72a;
 
-    --border-radius-1: 10px !important;
+    --shadow-1: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-2: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+
+    --border-color-1: #dddfe2;
+
+    --border-radius-1: 5px !important;
+    --border-radius-2: 10px !important;
 
     --color-scrollbar: #bcc0c4;
 }

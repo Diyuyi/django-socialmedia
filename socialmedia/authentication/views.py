@@ -2,9 +2,9 @@
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.shortcuts import render
-from .forms import CustomUserCreationForm,CustomAuthenticationForm,ChangePasswordForm
-from django.contrib.auth.views import LoginView,LogoutView,PasswordChangeView
-from django.shortcuts import redirect,HttpResponse
+from .forms import CustomUserCreationForm, CustomAuthenticationForm, ChangePasswordForm
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.shortcuts import redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 class RegisterView(CreateView):

@@ -51,7 +51,7 @@ header {
     border-radius: 5px;
 }
 
-.right-nav>a {
+.right-nav > *, .right-nav .account button {
     margin: 0 .25rem;
     font-size: 1.4rem;
     display: flex;
@@ -59,8 +59,29 @@ header {
     align-items: center;
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 50% !important;
     background: var(--bg-light-1);
+}
+
+.right-nav .account .dropdown-menu {
+    padding: 1rem;
+    border-radius: var(--border-radius-2);
+    min-width: 15rem;
+}
+
+.right-nav .account .dropdown-item {
+    padding: .5rem 1rem;
+    border-radius: var(--border-radius-2);
+}
+
+.right-nav .account .profile img {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+}
+
+.right-nav .account .profile .username {
+    margin-left: 1rem;
 }
 
 /* Content */
@@ -78,7 +99,7 @@ header {
 /* Func */
 
 .left-content ul li a {
-    border-radius: var(--border-radius-1);
+    border-radius: var(--border-radius-2);
 }
 
 ul.func li a,
@@ -184,7 +205,7 @@ ul.func a:hover,
 
 .card .card-body .action a:hover {
     background: var(--bg-light-1);
-    border-radius: var(--border-radius-1);
+    border-radius: var(--border-radius-2);
 }
 
 .card .card-body .action span {
@@ -243,7 +264,7 @@ ul.func a:hover,
 }
 
 .invite-friend .item:hover {
-    border-radius: var(--border-radius-1);
+    border-radius: var(--border-radius-2);
     cursor: pointer;
 }
 
@@ -316,7 +337,7 @@ ul.func a:hover,
 
 .contact a.user-item:hover {
     background: var(--bg-light-1);
-    border-radius: var(--border-radius-1);
+    border-radius: var(--border-radius-2);
 }
 
 .contact a.user-item .card-img {
@@ -402,7 +423,7 @@ ul.func a:hover,
 
 .modal-body .post-body .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: var(--color-scrollbar);
-    border-radius: var(--border-radius-1) !important;
+    border-radius: var(--border-radius-2) !important;
 }
 
 .modal-body .post-body .custom-scrollbar::-webkit-scrollbar {
@@ -425,4 +446,78 @@ ul.func a:hover,
 
 .modal-footer .btn-upload {
     width: 60%;
+}
+
+/* Login - Logout - Register */
+.login-area, .register-area {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: var(--gray-light);
+}
+
+.login-area .wrapper, .register-area .wrapper {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--light);
+    box-shadow: var(--shadow-2);
+    border-radius: var(--border-radius-2);
+    padding: 1rem;
+}
+
+.login-area .wrapper .title, .register-area .wrapper .title {
+    font-size: 2rem;
+}
+
+.form-login > input, .form-login .btn-login, 
+.form-register > input {
+    margin-bottom: 1rem;
+    min-width: 400px;
+    padding: .8rem 1rem;
+    border-radius: var(--border-radius-1);
+}
+
+.form-register .btn-register {
+    width: 58%;
+    padding: .8rem 1rem;
+    border-radius: var(--border-radius-1);
+}
+
+.form-login > input, .form-register > input {
+    background-color: transparent;
+    border: 1px solid var(--border-color-1) !important;
+}
+
+.form-login .btn-login,
+.form-register .btn-register {
+    background-color: var(--primary-1);
+    color: var(--light);
+    font-weight: 600;
+}
+
+.form-login .forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-area .btn-register {
+    background-color: var(--bg-green);
+    color: var(--light);
+    padding: .8rem 2.5rem;
+    margin: .5rem 0;
+    display: inline-block;
+    border-radius: var(--border-radius-1);
+    font-weight: 600;
+}
+
+.register-area .btn-login {
+    background-color: var(--bg-green);
+    color: var(--light);
+    padding: .8rem 1rem;
+    margin: .5rem 0;
+    display: inline-block;
+    border-radius: var(--border-radius-1);
+    font-weight: 600;
+    width: 40%;
 }
