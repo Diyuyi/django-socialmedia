@@ -1,0 +1,20 @@
+{% if friendship %}
+    <!-- Nút Chấp nhận yêu cầu kết bạn -->
+    <form action="{% url 'social:accept_friend_request' pk=friendship_id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Accept Friend Request</button>
+    </form>
+    {% endif %}
+    <!-- Nút Theo dõi -->
+    {% if friendship %}
+    <form action="{% url 'social:follow_user' %}" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="followee" value="{{ object.user.id }}">
+      <button type="submit">Follow</button>
+    </form>
+    <!-- Nút Bỏ theo dõi -->
+    <form action="{% url 'social:unfollow_user' pk=follow_id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Unfollow</button>
+    </form>
+    {% endif %}

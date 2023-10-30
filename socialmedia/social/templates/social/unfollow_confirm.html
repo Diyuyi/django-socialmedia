@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Unfollow User</h1>
+  <form method="post">
+    {% csrf_token %}
+    Are you sure you want to unfollow this user?
+    <input type="submit" value="Unfollow">
+  </form>
+{% endblock %}
