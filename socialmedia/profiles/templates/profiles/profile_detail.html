@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>{{ object.user.username }}</h1>
+  <p>Bio: {{ object.bio }}</p>
+  <img src="{{ object.profile_pic.url }}" alt="Profile Picture">
+  {% if friendship %}
+  <h2>Friendship Information</h2>
+  <p>User1: {{ friendship.user1.username }}</p>
+  <p>User2: {{ friendship.user2.username }}</p>
+  <p>Created at: {{ friendship.created_at }}</p>
+  <p>Created at: {{ friendship.status }}</p>
+{% else %}
+  <p>No Friendship record found.</p>
+{% endif %}
+  <p>Friendship: {{ friendship }}</p>
+
+  {% if request.user.id != object.user.id %}
+    {% if not friendship %}
+  <!-- Nếu chưa có Friendship, hiển thị nút Send Friend Request -->
+    <form action="{% url 'social:send_friend_request' user_id=object.user.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Send Friend Request</button>
+    </form>
+    {% endif %}
+  {% elif friendship.status == 'pending' and friendship.user2 == request.user %}
+    <!-- Nếu có yêu cầu kết bạn đang chờ và người dùng hiện tại là người được gửi yêu cầu kết bạn -->
+    <form action="{% url 'social:accept_friend_request' pk=friendship.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Accept Friend Request</button>
+    </form>
+  {% endif %}
+{% endblock %}

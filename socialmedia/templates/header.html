@@ -1,5 +1,62 @@
-
-
-<div class="header-area">
-    .
-</div>
+<header>
+    <div class="header-area d-flex justify-content-between align-items-center px-4">
+        <div class="left-nav d-flex justify-content-start align-items-center">
+            <a href="#" class="logo">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <nav class="navbar bg-body-tertiary" style="width: calc(100% - 80px)">
+                <div class="container-fluid">
+                    <form class="d-flex w-100" role="search">
+                        <input class="form-control me-2 input-search" type="search" placeholder="Tìm kiếm trên facebook" aria-label="Search">
+                    </form>
+                </div>
+            </nav>
+        </div>
+        <div class="middle-nav d-flex justify-content-center align-items-center">
+            <a href="{% url 'home' page='home' %}" class="navigate home {% if page == 'home' %}active{% endif %}">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="{% url 'home' page='friend' %}" class="navigate friend {% if page == 'friend' %}active{% endif %}">
+                <i class="fa-solid fa-user-group"></i>
+            </a>
+            <a href="{% url 'home' page='group' %}" class="navigate group {% if page == 'group' %}active{% endif %}">
+                <i class="fa-solid fa-people-group"></i>
+            </a>
+        </div>
+        <div class="right-nav d-flex justify-content-end align-items-center">
+            <a href="#" class="menu"><i class="fa-solid fa-bars"></i></a>
+            <a href="#" class="message"><i class="fa-solid fa-comment-dots"></i></a>
+            <a href="#" class="notify"><i class="fa-solid fa-bell"></i></a>
+            <div class="dropdown account">
+                <button class="" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="" class="dropdown-item profile d-flex align-items-center">
+                            <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="Avatar">
+                            <div class="username">
+                                {% if user.is_authenticated %}
+                                {{ user.username }}
+                                {% endif %}
+                            </div>
+                        </a>
+                    </li>
+                    <li><hr></li>
+                    <li>
+                        <a href="{% url 'change_password' %}" class="dropdown-item change-password">
+                            <i class="fa-solid fa-rotate"></i>
+                            <span>Đổi mật khẩu</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}" class="dropdown-item logout">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span>Đăng xuất</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

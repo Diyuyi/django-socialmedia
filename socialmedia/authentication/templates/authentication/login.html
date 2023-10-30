@@ -1,10 +1,21 @@
 {% extends 'base_generic.html' %}
 
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login">
-  </form>
+{% block user %}
+
+<div class="login-area">
+  <div class="wrapper text-center">
+    <div class="title text-uppercase text-center">login</div>
+    <hr>
+    <form class="form-login d-flex flex-column justify-content-center align-items-center" method="post">
+      {% csrf_token %}
+      <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username" placeholder="Tên đăng nhập">
+      <input type="password" name="password" autocomplete="current-password" required="" id="id_password" placeholder="Mật khẩu">
+      <button type="submit" class="btn-login">Đăng nhập</button>
+      <a class="forgot-password text-primary" href="">Quên mật khẩu?</a>
+    </form>
+    <hr>
+    <a href="{% url 'register' %}" class="btn-register">Tạo tài khoản mới</a>
+  </div>
+</div>
+
 {% endblock %}
