@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.views.generic import View, CreateView
 from .models import Post
 from .forms import PostForm
