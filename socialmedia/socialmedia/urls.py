@@ -18,13 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from posts import views as post_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authentication.urls')),
     path('profiles/', include('profiles.urls')),
     path('social/', include('social.urls')),
-    path('posts/', include('posts.urls')),
+    path('', include('posts.urls')),
 ]
 
 if settings.DEBUG:
