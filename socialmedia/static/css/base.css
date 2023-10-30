@@ -1,4 +1,5 @@
 @import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100;200;300;400;500;600;700;800&display=swap');
 
 :root {
     --primary-1: #0866ff;
@@ -8,14 +9,66 @@
     --color-light-1: #292929;
     --color-light-2: #474748;
     --color-light-3: #898a8d;
+    --color-light-4: #65676b;
+    --bg-light-1: #e4e6eb;
+    --bg-light-2: #e4e6e9;
+    --bg-light-3: #d8dadf;
+    
     
     --dark: #18191a;
     --gray-dark: #242526;
     --color-dark-1: #e3e5ea;
     --color-dark-2: #e4e6eb;
     --color-dark-3: #9b9ea3;
+    --bg-dark-1: #3a3b3c;
+
+    --shadow-1: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+    --border-radius-1: 10px !important;
+
+    --color-scrollbar: #bcc0c4;
 }
 
-.hehe {
-    color: var(--primary-1);
+html {
+    box-sizing: border-box;
+
+}
+
+body {
+    font-family: 'Playpen Sans', cursive;
+    line-height: 1.2;
+    text-rendering: optimizeSpeed;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-light-1);
+}
+
+a:hover {
+    color: var(--color-light-1);
+    cursor: pointer;
+}
+
+input {
+    border: none !important;
+    outline: none !important;
+    padding: .6rem 1rem;
+    background: var(--bg-light-1);
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: .6rem 1.2rem;
+    border-radius: 8px !important;
+}
+
+textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
 }
