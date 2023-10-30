@@ -33,13 +33,10 @@ class AddPostView(View):
 
     def post(self, request):
         form = PostForm(request.POST, request.FILES)  # Truyền dữ liệu từ POST và FILES vào mẫu
-        if not request.user.is_anonymous:
-            print("success")
-            if form.is_valid():
-                print("form sucess")
-                post = form.save(commit=False)  # Tạo một bài viết nhưng chưa lưu vào cơ sở dữ liệu
-                post.user = request.user  # Gán người dùng hiện tại cho bài viết
+        if form.is_valid():
+            print("form sucess")
+            post = form.save(commit=False)  # Tạo một bài viết nhưng chưa lưu vào cơ sở dữ liệu
+            post.user = request.user  # Gán người dùng hiện tại cho bài viết
 
-                post.save()  # Lưu bài viết vào cơ sở dữ liệu   
-        else: print("error")
+            post.save()  # Lưu bài viết vào cơ sở dữ liệu   
         return render(request, self.template_name, {'form': form})
