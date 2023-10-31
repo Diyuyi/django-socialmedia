@@ -30,38 +30,66 @@
     <script>
         // Dropdown
         const dropdownItem = document.querySelectorAll('.dropdown-item');
-        dropdownItem.forEach(e => e.addEventListener('click', () => {
+        dropdownItem && dropdownItem.forEach(e => e.addEventListener('click', () => {
             document.getElementById('dropdown-upload-post').innerHTML = e.innerHTML;
         }));
 
         // Textarea
         const textarea = document.getElementById("textarea-post");
-        textarea.addEventListener("input", function() {
+        textarea && textarea.addEventListener("input", function() {
             this.style.height = "auto";
             this.style.height = `${this.scrollHeight}px`;
         });
 
         // Action button invite friend
-        var itemElement = document.querySelector('.invite-friend .item');
-        var buttonElement = document.querySelectorAll('.invite-friend .item .action>button');
+        const itemElement = document.querySelector('.invite-friend .item');
+        const buttonElement = document.querySelectorAll('.invite-friend .item .action>button');
 
-        itemElement.addEventListener('mouseover', function() {
+        itemElement && itemElement.addEventListener('mouseover', function() {
             itemElement.style.backgroundColor = 'var(--bg-light-1)';
         });
-        itemElement.addEventListener('mouseleave', function() {
+        itemElement && itemElement.addEventListener('mouseleave', function() {
             itemElement.style.backgroundColor = 'transparent';
         });
 
-        buttonElement.forEach(e => {
+        buttonElement && buttonElement.forEach(e => {
             e.addEventListener('mouseenter', function() {
                 itemElement.style.backgroundColor = 'transparent';
             });
         });
 
         // Hidden scrollbar
-        document.getElementById('modalUploadPost').addEventListener('click', () => {
+        const modalUploadPost = document.getElementById('modalUploadPost');
+        modalUploadPost && modalUploadPost.addEventListener('click', () => {
             document.body.style.overflow = 'hidden';
         })
+
+        // Accordion
+        const accordion = (classBtn, classItem) => {
+            const headers = document.querySelectorAll(`${classBtn}.accordion-item button`);
+    
+            headers.forEach(function(header) {
+                header.addEventListener('click', function() {
+                    const target = this.getAttribute('data-bs-target');
+                    const targetCollapse = document.querySelector(target);
+                    const isExpanded = targetCollapse.classList.contains('show');
+                    headers.forEach(e => e.classList.remove('active'));
+                    header.classList.add('active');
+    
+                    const collapses = document.querySelectorAll(`${classItem}.accordion-collapse.show`);
+                    collapses.forEach(function(collapse) {
+                        collapse.classList.remove('show');
+                    });
+    
+                    if (!isExpanded) {
+                        targetCollapse.classList.add('show');
+                    }
+                });
+            });
+        }
+
+        accordion('.action-item', '.profile-page');
+        accordion('.friend-tab-item', '.friend-tab-detail');
 
     </script>
 </body>

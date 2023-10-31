@@ -35,20 +35,8 @@ header {
     position: relative;
 }
 
-.middle-nav .navigate:hover,
-.middle-nav .navigate.active {
+.middle-nav .navigate:hover {
     color: var(--primary-1);
-}
-
-.middle-nav .navigate.active::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    height: 4px;
-    background-color: var(--primary-1);
-    border-radius: 5px;
 }
 
 .right-nav > *, .right-nav .account button {
@@ -520,4 +508,211 @@ ul.func a:hover,
     border-radius: var(--border-radius-1);
     font-weight: 600;
     width: 40%;
+}
+
+/* Profile */
+
+.profile-area {
+    background-color: var(--bg-light-1);
+}
+
+.profile-detail {
+    background-color: var(--light);
+    border-radius: 50px 50px 0 0;
+    padding: 0 2rem;
+    /* box-shadow: var(--shadow-2); */
+}
+
+.profile-detail > .info {
+    padding: 1.5rem 1rem 1rem 1rem;
+}
+
+.profile-detail .info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50% !important;
+}
+
+.profile-detail .info .user {
+    margin-left: 2rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.profile-detail .action {
+    padding-bottom: 4px;
+}
+
+.profile-detail .action .action-item {
+    font-size: 1.2rem;
+    border-radius: var(--border-radius-2);
+    border: none;
+}
+
+.profile-detail .action .action-item button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: var(--border-radius-2);
+    position: relative;
+    background-color: transparent;
+}
+
+/* Profile page posts */
+
+.profile-page .posts .left-profile {
+    width: 36%;
+}
+
+.profile-page .posts .left-profile > * {
+    border-radius: 20px;
+    background-color: var(--light);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    /* box-shadow: var(--shadow-2); */
+}
+
+.profile-page .posts .left-profile .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.profile-page .posts .introduce .detail li {
+    margin: .5rem 0;
+    line-height: 1.5rem;
+}
+
+.profile-page .posts .friend .detail img {
+    display: block;
+    width: 130px;
+    height: 130px;
+    border-radius: var(--border-radius-2);
+}
+
+.profile-page .posts .friend .detail .name {
+    font-size: .8rem;
+    margin-top: .25rem;
+    font-weight: 600;
+}
+
+.profile-page .posts .right-profile {
+    width: 60%;
+}
+
+.profile-page .posts .right-profile .card {
+    margin: 1rem auto;
+}
+
+/* Profile page introduce */
+
+.profile-page .introduce > * {
+    border-radius: 20px;
+    background-color: var(--light);
+    margin-bottom: 1.5rem;
+}
+
+.profile-page .introduce .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.introduce .introduce-card > * {
+    padding: 1rem;
+}
+
+.introduce .introduce-card .left-card {
+    width: 30%;
+    border-right: 1px solid var(--border-color-1);
+}
+
+.introduce .introduce-card ul li {
+    margin: .5rem 0;
+}
+
+.introduce .introduce-card ul li a {
+    line-height: 1.5rem;
+    padding: .5rem;
+    display: block;
+    border-radius: var(--border-radius-1);
+    width: 100%;
+}
+
+.introduce .introduce-card ul li a:hover {
+    background-color: var(--bg-light-1);
+}
+
+.friend-card {
+    padding: 1rem;
+}
+
+.friend-card .friend-tab li button {
+    padding: 1rem 2rem;
+    display: block;
+    border-radius: var(--border-radius-1);
+    width: 100%;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.friend-card .friend-tab li button {
+    position: relative;
+}
+
+.friend-card .friend-tab li button:hover {
+    background-color: var(--bg-light-1);
+}
+
+.friend-card .friend-tab-detail {
+    padding: 1rem;
+}
+
+.friend-card .friend-list-item,
+.friend-card .invite-list-item {
+    padding: .8rem;
+    border: 1px solid var(--border-color-1);
+    width: 49%;
+    border-radius: var(--border-radius-2);
+}
+
+.friend-card .friend-list-item img,
+.friend-card .invite-list-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--border-radius-2);
+}
+
+.friend-card .friend-list-item .name,
+.friend-card .invite-list-item .name {
+    margin-top: .25rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+.friend-card .invite-list-item button {
+    min-width: 120px;
+}
+
+.friend-card .invite-list-item button.accept {
+    background-color: var(--primary-1);
+    color: var(--light);
+}
+
+.friend-card .invite-list-item button.reject {
+    background-color: var(--bg-light-3);
+    color: var(--dark);
+}
+
+/* Profile page friend */
+
+.profile-page .friend > * {
+    border-radius: 20px;
+    background-color: var(--light);
+    margin-bottom: 1.5rem;
+}
+
+.profile-page .friend .title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
 }

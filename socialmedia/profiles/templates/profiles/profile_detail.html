@@ -1,33 +1,503 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>{{ object.user.username }}</h1>
-  <p>Bio: {{ object.bio }}</p>
-  <img src="{{ object.profile_pic.url }}" alt="Profile Picture">
-  {% if friendship %}
-  <h2>Friendship Information</h2>
-  <p>User1: {{ friendship.user1.username }}</p>
-  <p>User2: {{ friendship.user2.username }}</p>
-  <p>Created at: {{ friendship.created_at }}</p>
-  <p>Created at: {{ friendship.status }}</p>
-{% else %}
-  <p>No Friendship record found.</p>
-{% endif %}
-  <p>Friendship: {{ friendship }}</p>
-
-  {% if request.user.id != object.user.id %}
-    {% if not friendship %}
-  <!-- Nếu chưa có Friendship, hiển thị nút Send Friend Request -->
-    <form action="{% url 'social:send_friend_request' user_id=object.user.id %}" method="post">
-      {% csrf_token %}
-      <button type="submit">Send Friend Request</button>
-    </form>
-    {% endif %}
-  {% elif friendship.status == 'pending' and friendship.user2 == request.user %}
-    <!-- Nếu có yêu cầu kết bạn đang chờ và người dùng hiện tại là người được gửi yêu cầu kết bạn -->
-    <form action="{% url 'social:accept_friend_request' pk=friendship.id %}" method="post">
-      {% csrf_token %}
-      <button type="submit">Accept Friend Request</button>
-    </form>
-  {% endif %}
+<div class="profile-area p-4">
+  <div class="container">
+    <div class="profile-detail">
+      <div class="info d-flex justify-content-center align-items-center">
+        <div class="avatar">
+          <img src="{{ object.profile_pic.url }}" alt="">
+        </div>
+        <div class="user">
+          <div class="name fs-3">{{ object.user.username }}</div>
+          <div class="friend fs-5 mt-2">999 bạn bè</div>
+        </div>
+      </div>
+      <hr>
+      <ul class="accordion action d-flex justify-content-center align-items-center" id="profilePage">
+        <li class="accordion-item action-item">
+          <button class="active" type="button" data-bs-toggle="collapse" data-bs-target="#postsPage" aria-expanded="true" aria-controls="postsPage">
+            Bài viết
+          </button>
+        </li>
+        <li class="accordion-item action-item">
+          <button class="collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#introducePage"aria-expanded="false" aria-controls="introducePage">
+            Giới thiệu
+          </button>
+        </li>
+        <li class="accordion-item action-item">
+          <button class="collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#friendPage" aria-expanded="false" aria-controls="friendPage">
+            Bạn bè
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="profile-body mt-4">
+      <div class="accordion-collapse collapse show profile-page" id="postsPage" data-bs-parent="#profilePage">
+        <div class="posts d-flex justify-content-between">
+          <div class="left-profile">
+            <div class="introduce">
+              <div class="title">Giới thiệu</div>
+              <ul class="detail">
+                <li>Tiểu sử</li>
+                <li>Sở thích</li>
+                <li>Nơi ở</li>
+              </ul>
+            </div>
+            <div class="friend">
+              <div class="title d-flex justify-content-between align-items-center">
+                <span>Bạn bè</span>
+                <span class="fs-6">999 người bạn</span>
+              </div>
+              <ul class="detail d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="right-profile">
+            <div class="card upload-post mt-0">
+              <div class="card-top d-flex align-items-center justify-content-between">
+                <img src="{{ object.profile_pic.url }}" class="card-img-top" alt="avatar">
+                <a href="{% url 'upload_post' %}" class="text" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="modalUploadPost">
+                  <input type="text" placeholder="Bạn đang nghĩ gì?">
+                </a>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div></div>
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Tạo bài viết {{user.username}}
+                        </h1>
+                        <button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <form action="{% url 'upload_post' %}" method="post">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                          <div href="" class="user">
+                            <a href="" class="d-flex align-items-center justify-content-center">
+                              <img src="{{ object.profile_pic.url }}" class="card-img-top" alt="avatar">
+                            </a>
+                            <div class="author">
+                              <div>{{ object.user.username }}</div>
+                              <div class="dropdown status">
+                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdown-upload-post">
+                                  Trạng thái
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item">Công khai</a></li>
+                                  <li><a class="dropdown-item">Chỉ mình tôi</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="post-body mt-4">
+                            <div class="custom-scrollbar w-100">
+                              <h3 class="post-title m-auto"><input type="text" name="title" placeholder="Nhập title"></h3>
+                              <textarea id="textarea-post" cols="30" rows="10" name="content" placeholder="{{ object.user.username }} ơi, bạn đang nghĩ gì?"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                          <button type="button" class="btn-add-file">
+                            <i class="fa-solid fa-images"></i>
+                            <span>Đính kèm</span>
+                          </button>
+                          <button type="submit" class="btn btn-primary btn-upload">Đăng bài</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="my-0 mx-3">
+              <div class="card-body">
+                <div class="action d-flex align-items-center justify-content-between">
+                  <a class="livestream">
+                    <i class="fa-solid fa-video text-danger"></i>
+                    <span>Video trực tiếp</span>
+                  </a>
+                  <a class="upload">
+                    <i class="fa-solid fa-images text-success"></i>
+                    <span>Ảnh / video</span>
+                  </a>
+                  <a class="react">
+                    <i class="fa-solid fa-face-smile text-warning"></i>
+                    <span>Cảm xúc / hoạt động</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card post-detail">
+              <div class="card-top d-flex align-items-center">
+                <img src="{{ object.profile_pic.url }}" class="card-img-top" alt="avatar">
+                <div class="author ms-2">
+                  <a href="#" class="name">{{ object.user.username }}</a>
+                  <div class="upload-time">1 giờ</div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="post-body mb-3">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, blanditiis inventore, provident nihil aut sunt nemo beatae unde voluptates qui officiis, veritatis distinctio pariatur ratione. Excepturi sequi iste quae facilis?
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae, maxime expedita? Tempore, eos commodi eligendi at ab tenetur. Dolorem quis cupiditate architecto, labore ea maxime doloremque? Provident debitis possimus corrupti.
+                </div>
+                <div class="file-upload">
+                  <img style="width: 100%;" src="https://scontent.fsgn5-10.fna.fbcdn.net/v/t39.30808-6/398183935_345840234785834_6715728988585718484_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=DByoMNZzQH0AX9p3SHO&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfBWz3uU_whyuMehfR_r5tU9KVrMppUQucnIQVCm95SjWA&oe=654588B9" alt="">
+                </div>
+              </div>
+              <div class="count d-flex justify-content-between align-items-center">
+                <div class="react">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  <span>1.2k</span>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="comment">
+                    <span>15</span>
+                    <i class="fa-solid fa-message"></i>
+                  </div>
+                  <div class="share ms-3">
+                    <span>8</span>
+                    <i class="fa-solid fa-share"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="action d-flex justify-content-between align-items-center border-top">
+                <a href="#" class="action-item react">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  <span>Like</span>
+                </a>
+                <a href="#" class="action-item comment">
+                  <i class="fa-solid fa-message"></i>
+                  <span>Comment</span>
+                </a>
+                <a href="#" class="action-item share">
+                  <i class="fa-solid fa-share"></i>
+                  <span>Share</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-collapse collapse profile-page" id="introducePage" data-bs-parent="#profilePage">
+        <div class="introduce">
+          <div class="introduce-card d-flex justify-content-between">
+            <div class="left-card">
+              <div class="title">Giới thiệu</div>
+              <ul>
+                <li><a href="">Tổng quan</a></li>
+                <li><a href="">Công việc và học vấn</a></li>
+                <li><a href="">Nơi từng sống</a></li>
+                <li><a href="">Thông tin liên hệ</a></li>
+              </ul>
+            </div>
+            <div class="right-card align-self-center"></div>
+          </div>
+          <div class="friend-card">
+            <div class="title d-flex justify-content-between align-items-center">
+              <span>Bạn bè</span>
+              <span class="fs-6">999 người bạn</span>
+            </div>
+            <ul class="accordion friend-tab d-flex align-items-center" id="friend-tab">
+              <li class="accordion-item friend-tab-item">
+                <button class="active" type="button" data-bs-toggle="collapse" data-bs-target="#listFriend" aria-expanded="true" aria-controls="listFriend">
+                  Bạn bè
+                </button>
+              </li>
+              <li class="accordion-item friend-tab-item">
+                <button class="collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#inviteFriend" aria-expanded="false" aria-controls="inviteFriend">
+                  Lời mời kết bạn
+                </button>
+              </li>
+            </ul>
+            <div class="accordion-collapse collapse show friend-tab-detail" id="listFriend" data-bs-parent="#friend-tab">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+              </div>
+            </div>
+            <div class="accordion-collapse collapse friend-tab-detail" id="inviteFriend" data-bs-parent="#friend-tab">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-collapse collapse profile-page" id="friendPage" data-bs-parent="#profilePage">
+        <div class="friend">
+          <div class="friend-card">
+            <div class="title d-flex justify-content-between align-items-center">
+              <span>Bạn bè</span>
+              <span class="fs-6">999 người bạn</span>
+            </div>
+            <ul class="accordion friend-tab d-flex align-items-center" id="friend-tab">
+              <li class="accordion-item friend-tab-item">
+                <button class="active" type="button" data-bs-toggle="collapse" data-bs-target="#listFriend" aria-expanded="true" aria-controls="listFriend">
+                  Bạn bè
+                </button>
+              </li>
+              <li class="accordion-item friend-tab-item">
+                <button class="collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#inviteFriend" aria-expanded="false" aria-controls="inviteFriend">
+                  Lời mời kết bạn
+                </button>
+              </li>
+            </ul>
+            <div class="accordion-collapse collapse show friend-tab-detail" id="listFriend" data-bs-parent="#friend-tab">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+                <a href="" class="friend-list-item d-flex align-items-center">
+                  <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                  <div class="name">Lương Tiến Thịnh</div>
+                </a>
+              </div>
+            </div>
+            <div class="accordion-collapse collapse friend-tab-detail" id="inviteFriend" data-bs-parent="#friend-tab">
+              <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+                <div class="invite-list-item d-flex justify-content-between align-items-center">
+                  <a href="" class="d-flex align-items-center">
+                    <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="avatar">
+                    <div class="name">Lương Tiến Thịnh</div>
+                  </a>
+                  <div class="action">
+                    <button class="accept">Xác nhận</button>
+                    <button class="reject">Từ chối</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <p>Bio: {{ object.bio }}</p> -->
+    <!-- {% if friendship %}
+        <h2>Friendship Information</h2>
+        <p>User1: {{ friendship.user1.username }}</p>
+        <p>User2: {{ friendship.user2.username }}</p>
+        <p>Created at: {{ friendship.created_at }}</p>
+        <p>Created at: {{ friendship.status }}</p>
+      {% else %}
+        <p>No Friendship record found.</p>
+      {% endif %}
+        <p>Friendship: {{ friendship }}</p>
+    
+      {% if request.user.id != object.user.id %}
+        {% if not friendship %}
+          <form action="{% url 'social:send_friend_request' user_id=object.user.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Send Friend Request</button>
+          </form>
+        {% endif %}
+        {% elif friendship.status == 'pending' and friendship.user2 == request.user %}
+          <form action="{% url 'social:accept_friend_request' pk=friendship.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Accept Friend Request</button>
+          </form>
+        {% endif %} -->
+  </div>
+</div>
 {% endblock %}

@@ -33,7 +33,7 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="" class="dropdown-item profile d-flex align-items-center">
+                        <a href="{% url 'profile' pk=user.pk %}" class="dropdown-item profile d-flex align-items-center">
                             <img src="https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-6/359361062_3578732925742345_2837509200923816125_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GVD86aaaVT8AX8xj-a_&_nc_ht=scontent.fsgn19-1.fna&oh=00_AfDEJxqSGBXaJLD0wXt4yMtVEQ7edcYr_ANtVqU-xB10jA&oe=6543A9C6" alt="Avatar">
                             <div class="username">
                                 {% if user.is_authenticated %}
