@@ -5,6 +5,8 @@ from .forms import FriendshipForm, FollowForm
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404,redirect
 from django.http import Http404
+from profiles.models import Profile
+
 
 
 User = get_user_model()
